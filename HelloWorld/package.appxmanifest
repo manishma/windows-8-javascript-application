@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+
+  <Identity
+    Name="cdce1978-6a5e-49f9-9172-621b5041d752"
+    Version="1.0.0.0"
+    Publisher="CN=igor" />
+
+  <Properties>
+    <DisplayName>HelloWorld</DisplayName>
+    <PublisherDisplayName>igor</PublisherDisplayName>
+    <Logo>images\storelogo.png</Logo>
+  </Properties>
+
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+
+  <Applications>
+    <Application 
+      Id="App"
+      StartPage="default.html">
+
+      <VisualElements
+        DisplayName="HelloWorld"
+        Logo="images\logo.png"
+        SmallLogo="images\smalllogo.png"
+        Description="HelloWorld"
+        ForegroundText="light"
+        BackgroundColor="#464646">
+
+        <DefaultTile ShowName="allLogos" />
+        <SplashScreen Image="images\splashscreen.png" />
+
+      </VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+
+</Package>
