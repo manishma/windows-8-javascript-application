@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "HelloWorld", "HelloWorld\HelloWorld.jsproj", "{CDCE1978-6A5E-49F9-9172-621B5041D752}"
 EndProject
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Controls_EssentialsControls", "HTML essential controls sample\JavaScript\Controls_EssentialsControls.jsproj", "{4B4616EF-384E-4AE2-BA90-0358138BFE15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{CDCE1978-6A5E-49F9-9172-621B5041D752}.Release|x86.ActiveCfg = Release|x86
 		{CDCE1978-6A5E-49F9-9172-621B5041D752}.Release|x86.Build.0 = Release|x86
 		{CDCE1978-6A5E-49F9-9172-621B5041D752}.Release|x86.Deploy.0 = Release|x86
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Release|x64.ActiveCfg = Release|Any CPU
+		{4B4616EF-384E-4AE2-BA90-0358138BFE15}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
