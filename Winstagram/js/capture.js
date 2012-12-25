@@ -25,6 +25,7 @@
     var mediaCapture;
     //var recording = false;
     //var recordedFile;
+    var takePhotoBlock = false;
     
     var pics;
     //var videos;
@@ -49,6 +50,14 @@
       });
     
     function takePhoto() {
+
+        if (takePhotoBlock) {
+            console.log('take photo is disabled');
+            return;
+        }
+        
+        takePhotoBlock = true;
+
         pics.createFileAsync((new Date()).getTime()+".jpg", Storage.CreationCollisionOption.generateUniqueName)
           .then(function (file) {
               var photoProperties = Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg();
@@ -56,8 +65,13 @@
               mediaCapture.capturePhotoToStorageFileAsync(photoProperties, file).then(function () {
                   console.log("Image saved on disk on: " + file.path);
 
+                  takePhotoBlock = false; // not needed, because the page will be rendered again.
                   WinJS.Navigation.navigate("/collage.html", { filePath: file.path });
               });
+              mediaCapture.onfailed = function (e) {
+                  takePhotoBlock = false;
+                  console.log(e);
+              };
           });
     }
     
