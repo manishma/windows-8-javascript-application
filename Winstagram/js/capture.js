@@ -66,7 +66,7 @@
                   console.log("Image saved on disk on: " + file.path);
 
                   takePhotoBlock = false; // not needed, because the page will be rendered again.
-                  WinJS.Navigation.navigate("/collage.html", { filePath: file.path });
+                  WinJS.Navigation.navigate("/collage.html", { file: file });
               });
               mediaCapture.onfailed = function (e) {
                   takePhotoBlock = false;

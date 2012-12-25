@@ -13,8 +13,6 @@
     var page = WinJS.UI.Pages.define("/collage.html", {
 
         init: function (element, options) {
-            if (WinJS.Navigation.state)
-                console.log('file path on init: ' + WinJS.Navigation.state.filePath);
 
         },
 
@@ -25,6 +23,11 @@
             onLoad();
             //var imageMgr = new WindowsRuntimeComponent.ImageProcessing.ImageManager();
             //imageMgr.setTextToImage("path to image", "this is my image caption");
+
+            if (WinJS.Navigation.state && WinJS.Navigation.state.file) {
+                console.log('file path on init: ' + WinJS.Navigation.state.file.path);
+                loadImage(WinJS.Navigation.state.file);
+            }
         }
     });
 
@@ -33,6 +36,11 @@
     var canvas;
     var output;
     var animationActive = false;
+
+    // Set API parameters
+    var requestedSize = 200;
+    var thumbnailMode = Windows.Storage.FileProperties.ThumbnailMode.singleItem;
+    var thumbnailOptions = Windows.Storage.FileProperties.ThumbnailOptions.useCurrentScale;
 
     function onLoad() {
         var element;
@@ -208,13 +216,6 @@
             //"singlePicture": "ThumbnailMode.singleItem",
         };
 
-        
-        // Set API parameters
-        var requestedSize = 200,
-            thumbnailMode = Windows.Storage.FileProperties.ThumbnailMode.singleItem, //modes[modeSelected],
-            thumbnailOptions = Windows.Storage.FileProperties.ThumbnailOptions.useCurrentScale;
-
-       
 
         // Verify that we are currently not snapped, or that we can unsnap to open the picker
         var currentState = Windows.UI.ViewManagement.ApplicationView.value;
@@ -231,24 +232,28 @@
         openpicker.fileTypeFilter.replaceAll([".jpg", ".png", ".bmp", ".gif", ".tif"]);
         openpicker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.picturesLibrary;
         openpicker.pickSingleFileAsync().done(function (file) {
-            if (file) {
-                file.getThumbnailAsync(thumbnailMode, requestedSize, thumbnailOptions).done(function (thumbnail) {
-                    if (thumbnail) {
-                        outputResult(file, thumbnail, Windows.Storage.FileProperties.ThumbnailMode.singleItem, requestedSize);
-                    } else if (isFastSelected) {
-                        WinJS.log && WinJS.log(SdkSample.errors.noExif, "sample", "status");
-                    } else {
-                        WinJS.log && WinJS.log(SdkSample.errors.noThumbnail, "sample", "status");
-                    }
-                }, function (error) {
-                    WinJS.log && WinJS.log(SdkSample.errors.fail, "sample", "status");
-                });
-            } else {
-                WinJS.log && WinJS.log(SdkSample.errors.cancel, "sample", "status");
-            }
+            loadImage(file);
         });
     }
 
+    var loadImage = function(file) {
+        if (file) {
+            file.getThumbnailAsync(thumbnailMode, requestedSize, thumbnailOptions).done(function(thumbnail) {
+                if (thumbnail) {
+                    outputResult(file, thumbnail, Windows.Storage.FileProperties.ThumbnailMode.singleItem, requestedSize);
+                } else if (isFastSelected) {
+                    WinJS.log && WinJS.log(SdkSample.errors.noExif, "sample", "status");
+                } else {
+                    WinJS.log && WinJS.log(SdkSample.errors.noThumbnail, "sample", "status");
+                }
+            }, function(error) {
+                WinJS.log && WinJS.log(SdkSample.errors.fail, "sample", "status");
+            });
+        } else {
+            WinJS.log && WinJS.log(SdkSample.errors.cancel, "sample", "status");
+        }
+    };
+    
     function outputResult(item, thumbnailImage, thumbnailMode, requestedSize) {
         document.getElementById("picture-thumb-imageHolder").src = URL.createObjectURL(thumbnailImage, { oneTimeOnly: true });
         // Close the thumbnail stream once the image is loaded
