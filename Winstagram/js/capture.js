@@ -1,4 +1,11 @@
-﻿(function() {
+﻿(function () {
+    
+
+    WinJS.UI.Pages.define("/capture.html", {
+        ready: function (element, options) {
+            startCamera();
+        }
+    });
 
     // Using
     var Capture = Windows.Media.Capture;
