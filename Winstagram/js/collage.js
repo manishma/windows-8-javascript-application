@@ -280,13 +280,41 @@
     var saveCanvasToImage = function() {
         console.log("saving canvas to image.");
 
-        var saveUrl = paintCanvas.toDataURL("image/jpeg");
-        var base64 = saveUrl.replace("data:image/jpeg;base64,", "");
+        var Imaging = Windows.Graphics.Imaging;
+        var picker = new Windows.Storage.Pickers.FileSavePicker();
+        picker.suggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.picturesLibrary;
+        picker.fileTypeChoices.insert("PNG file", [".png"]);
+        var imgData, fileStream = null;
+        picker.pickSaveFileAsync().then(function(file) {
+            if (file) {
+                return file.openAsync(Windows.Storage.FileAccessMode.readWrite);
+            } else {
+                return WinJS.Promise.wrapError("No file selected");
+            }
+        }).then(function(stream) {
+            fileStream = stream;
+            var canvas = paintCanvas;
+            var ctx = canvas.getContext("2d");
+            imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-        WinJS.Application.sessionState.picFolder.createFileAsync((new Date()).getTime() + "_W8GRM.jpg", Windows.Storage.CreationCollisionOption.generateUniqueName)
-            .then(function (file) {
-                
-                console.log("Save collage to image: " + file.path);
-            });
+            return Imaging.BitmapEncoder.createAsync(Imaging.BitmapEncoder.pngEncoderId, stream);
+        }).then(function(encoder) {
+            //Set the pixel data--assume "encoding" object has options from elsewhere
+            encoder.setPixelData(Windows.Graphics.Imaging.BitmapPixelFormat.rgba8,
+                Windows.Graphics.Imaging.BitmapAlphaMode.premultiplied,
+                imgData.width, /* width */
+                imgData.height, /* height */
+                96, /* dpiX */
+                96, /* dpiY */
+                new Uint8Array(imgData.data));
+            //Go do the encoding
+            return encoder.flushAsync();
+        }).done(function() {
+            //Make sure to do this at the end
+            fileStream.close();
+        }, function() {
+            //Empty error handler (do nothing if the user canceled the picker
+        });
+
     };
 })();
