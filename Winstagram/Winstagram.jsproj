@@ -60,6 +60,7 @@
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="js\capture.js" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
     <None Include="Winstagram_TemporaryKey.pfx" />
