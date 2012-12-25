@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Neodynamic.SDK.ImageDraw</id>
+    <version>3.0.2000.4</version>
+    <title>ImageDraw SDK for .NET</title>
+    <authors>Neodynamic</authors>
+    <owners>Neodynamic</owners>
+    <licenseUrl>http://www.neodynamic.com/Licensing/EULA.aspx</licenseUrl>
+    <projectUrl>http://www.neodynamic.com/Products/ImageDraw-SDK-NET/ImageDraw_SDK_NET.aspx?tabid=95&amp;prodid=8</projectUrl>
+    <iconUrl>http://www.neodynamic.com/images/imagedraw.gif</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Neodynamic ImageDraw SDK for .NET is the definitive solution for professional imaging tasks, exclusively designed for .NET developers. ImageDraw is a lightweight royalty-free .NET component (.NET DLL Class Library a.k.a. assembly) which lets you to easily add advanced Imaging Effects and Dynamic Image Composition to any .NET Framework-based applications. ImageDraw allows you to use all the potential of GDI+ to dynamically create composite images (Supporting image files, Texts like captions and watermarks as well as AutoShapes (lines and arrows, rectangles, ovals, polygons, stars, etc)) with lots of useful built-in Imaging Effects like drop shadows, reflections, perspective views, Polaroid, filmstrip, scaling, resizing, skewing, and so on. Main Features: 1- Dynamic image composition supporting Images (from files, base64 strings, BLOBs, etc.), Texts &amp;amp; WordArt  (autosize, multi-line, custom font files support), and AutoShapes like lines, arrows, rectangles, rounded rectangles, polygons, stars, ovals, callouts (speech bubbles), paths, and so on.  2- Lots of useful Imaging Effects out of the box, including: Adjust Brightness, Contrast, Gamma, Hue, Saturation, Opacity, HSL; Convert To Grayscale, Negative, Sepia, Black &amp;amp; White; Crop, Drop REAL Shadow, Flip, Make Transparent, Perspective Shadow, Resize, Scale, Rotate, Round Corners, Silhouette, Stretch, Decorative Border, Glass Table, Mail Stamp, Polaroid, Filmstrip, Skew, Perspective View, Camera view, Gaussian Blur, Distort Corners, Remove Transparency, Perspective Reflection, Red-Eye Removal, Feather, Glow, Fade, BitmapMask, Remove Pixel, Color Substitution, Tint, Emboss, Solarize, Pixelate, Sharpen, Focal Grayscale, Focal Pixelate, Focal Soften, Focal Tint, and Museum Matte Frame.  3- Accepts as image sources the following formats: GIF, JPG/JPEG, BMP, TIFF, ICO, WMF, EMF and PNG. 4- Renders images on-fly in formats such as GIF, JPG/JPEG, BMP, Wireless Bitmap ( WBMP ) and PNG. 5- Support for Multipage TIFF</description>
+    <summary>.NET Dynamic Image Composition supporting Images-Photos-Pictures, Texts, WordArt, Rich Text and Autoshapes like lines, arrows, rects, stars, ovals, callouts. Lots of useful built-in Imaging Effects.</summary>
+    <copyright>Copyright (c) 2012 - Neodynamic</copyright>
+    <tags>Images Photos Pictures Texts WordArt Rich Text Autoshapes lines arrows rectangles polygons stars ovals callouts speech bubbles paths Effects Adjust Brightness Contrast Gamma Hue Saturation Opacity HSL Convert Grayscale Negative Sepia Black White Crop Drop Shadow Flip Make Transparent Perspective Resize Scale Rotate Round Corners Silhouette Stretch Decorative Border Glass Table Mail Stamp Polaroid Filmstrip Skew View Camera view Gaussian Blur Distort Remove Transparency Reflection Red-Eye Removal Feather Glow Fade BitmapMask Pixel Color Substitution Tint Emboss Solarize Sharpen Museum Matte Frame GIF JPG JPEG PNG BMP TIFF Multipage ICO WMF EMF SQL Server BLOB Binary Large Object XML Base64</tags>
+    <references>
+      <reference file="Neodynamic.SDK.ImageDraw.dll" />
+    </references>
+  </metadata>
+</package>
