@@ -17,17 +17,7 @@
         },
 
         ready: function (element, options) {
-        
-            document.getElementById("picture-thumb-start").addEventListener("click", pickPhoto, false);
-
             onLoad();
-            //var imageMgr = new WindowsRuntimeComponent.ImageProcessing.ImageManager();
-            //imageMgr.setTextToImage("path to image", "this is my image caption");
-
-            if (WinJS.Navigation.state && WinJS.Navigation.state.file) {
-                console.log('file path on init: ' + WinJS.Navigation.state.file.path);
-                loadImage(WinJS.Navigation.state.file);
-            }
         }
     });
 
@@ -39,18 +29,25 @@
 
     // Set API parameters
     var requestedSize = 200;
+    var canvasSize = 300;
     var thumbnailMode = Windows.Storage.FileProperties.ThumbnailMode.singleItem;
     var thumbnailOptions = Windows.Storage.FileProperties.ThumbnailOptions.useCurrentScale;
 
     function onLoad() {
+        document.getElementById("picture-thumb-start").addEventListener("click", pickPhoto, false);
+
+        if (WinJS.Navigation.state && WinJS.Navigation.state.file) {
+            console.log('file path on init: ' + WinJS.Navigation.state.file.path);
+            loadImage(WinJS.Navigation.state.file);
+        }
+
+
         var element;
         canvas = document.getElementById("paintCanvas");
         output = document.getElementById("output");
 
         // account for margins
-        canvas.width = output.clientWidth - 25;
-        canvas.height = output.clientHeight - 125;
-
+       
         context = canvas.getContext("2d");
         canvas.addEventListener("MSPointerDown", canvasHandler, false);
         canvas.addEventListener("MSPointerMove", canvasHandler, false);
@@ -58,6 +55,8 @@
         canvas.addEventListener("MSPointerOver", canvasHandler, false);
         canvas.addEventListener("MSPointerOut", canvasHandler, false);
         canvas.addEventListener("MSPointerCancel", canvasHandler, false);
+        canvas.width = canvasSize;
+        canvas.height = canvasSize;
         context.lineWidth = 1;
         context.lineCap = "round";
         context.lineJoin = "round";
@@ -75,8 +74,6 @@
         }
     }
 
-    
-
     function colorSelector(evt) {
         context.strokeStyle = evt.srcElement.id;
         var element = document.getElementById("selectedColor");
@@ -92,7 +89,7 @@
         brush.prevY = 0;
         brush.currentX = 0;
         brush.currentY = 0;
-        brush.lineWidth = 1;
+        brush.lineWidth = 3;
 
         // Even though the choice of raw coordinates over predicted coordinates has performance
         // overhead we will use raw coordinates because predicted coordinates don't give
@@ -255,19 +252,12 @@
         document.getElementById("picture-thumb-requestedSize").innerText = "Requested size: " + requestedSize;
         document.getElementById("picture-thumb-returnedSize").innerText = "Returned size: " + thumbnailImage.originalWidth + "x" + thumbnailImage.originalHeight;
 
-
-
-
         var can = document.getElementById('paintCanvas');
         var ctx = can.getContext('2d');
 
-
-
         var img = new Image();
         img.onload = function () {
-            can.width = 300;
-            can.height = 300;
-            ctx.drawImage(img, (300 - img.width)/2, (300 - img.height)/2);
+            ctx.drawImage(img, (canvasSize - img.width) / 2, (canvasSize - img.height) / 2);
             thumbnailImage.close();
         }
         img.src = URL.createObjectURL(thumbnailImage, { oneTimeOnly: true });
