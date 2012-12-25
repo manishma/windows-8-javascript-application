@@ -56,8 +56,7 @@
               mediaCapture.capturePhotoToStorageFileAsync(photoProperties, file).then(function () {
                   console.log("Image saved on disk on: " + file.path);
 
-                  WinJS.Application.sessionState.collageFilePath = file.path;
-                  WinJS.Navigation.navigate("/collage.html", { filelPath: file.path });
+                  WinJS.Navigation.navigate("/collage.html", { filePath: file.path });
               });
           });
     }

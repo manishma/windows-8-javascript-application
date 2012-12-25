@@ -13,7 +13,7 @@
     var page = WinJS.UI.Pages.define("/collage.html", {
 
         init: function (element, options) {
-            console.log('file path on init: ' + WinJS.Application.sessionState.collageFilePath);
+            console.log('file path on init: ' + WinJS.Navigation.state.filePath);
 
         },
 
