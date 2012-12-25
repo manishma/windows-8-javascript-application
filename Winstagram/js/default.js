@@ -5,6 +5,15 @@
 
     WinJS.Binding.optimizeBindingReferences = true;
 
+    WinJS.Navigation.addEventListener("navigated", function (evt) {
+        var url = evt.detail.location;
+        var host = document.getElementById("contentHost");
+        // Call unload method on current scenario, if there is one
+        host.winControl && host.winControl.unload && host.winControl.unload();
+        WinJS.Utilities.empty(host);
+        WinJS.UI.Pages.render(url, host);
+    });
+
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
 
@@ -14,11 +23,10 @@
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
                 btnCapture.addEventListener("click", function () {
-                    location.href = "/capture.html";
-                    //WinJS.Navigation.navigate("/capture.html");
+                    WinJS.Navigation.navigate("/capture.html");
                 });
                 btnCollage.addEventListener("click", function () {
-                    location.href = "/collage.html";
+                    WinJS.Navigation.navigate("/collage.html");
                 });
             } else {
                 // TODO: This application has been reactivated from suspension.

@@ -11,7 +11,14 @@
 
     
     var page = WinJS.UI.Pages.define("/collage.html", {
+
+        init: function (element, options) {
+            console.log('file path on init: ' + WinJS.Application.sessionState.collageFilePath);
+
+        },
+
         ready: function (element, options) {
+        
             document.getElementById("picture-thumb-start").addEventListener("click", pickPhoto, false);
 
 

@@ -6,10 +6,6 @@
             btn_capture.addEventListener("click", function() {
                 takePhoto();
             });
-            
-            btn_back.addEventListener("click", function () {
-                history.back();
-            });
 
             startCamera();
         }
@@ -59,6 +55,9 @@
 
               mediaCapture.capturePhotoToStorageFileAsync(photoProperties, file).then(function () {
                   console.log("Image saved on disk on: " + file.path);
+
+                  WinJS.Application.sessionState.collageFilePath = file.path;
+                  WinJS.Navigation.navigate("/collage.html", { filelPath: file.path });
               });
           });
     }
