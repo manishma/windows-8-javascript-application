@@ -260,7 +260,9 @@
         var ctx = can.getContext('2d');
 
         var img = new Image();
-        img.onload = function() {
+        img.onload = function () {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, canvasSize, canvasSize);
             ctx.drawImage(img, (canvasSize - img.width) / 2, (canvasSize - img.height) / 2);
             thumbnailImage.close();
         };
