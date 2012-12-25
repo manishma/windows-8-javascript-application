@@ -38,6 +38,9 @@
     var thumbnailOptions = Windows.Storage.FileProperties.ThumbnailOptions.useCurrentScale;
 
     function onLoad() {
+
+        cleanOutput();
+        
         document.getElementById("picture-thumb-start").addEventListener("click", pickPhoto, false);
 
         if (WinJS.Navigation.state && WinJS.Navigation.state.file) {
@@ -68,6 +71,8 @@
         initColorPalette();
         
         brushList = new Array();
+
+        cleanCanvas();
     }
 
     function initColorPalette() {
@@ -173,11 +178,6 @@
         }
     }
 
-    function clearCanvas(evt) {
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        brushList.length = 0;
-    }
-
     function animationHandler() {
         animationActive = false;
         for (var idx in brushList) {
@@ -256,13 +256,13 @@
         document.getElementById("picture-thumb-requestedSize").innerText = "Requested size: " + requestedSize;
         document.getElementById("picture-thumb-returnedSize").innerText = "Returned size: " + thumbnailImage.originalWidth + "x" + thumbnailImage.originalHeight;
 
+        cleanCanvas();
+        
         var can = document.getElementById('paintCanvas');
         var ctx = can.getContext('2d');
 
         var img = new Image();
         img.onload = function () {
-            ctx.fillStyle = 'white';
-            ctx.fillRect(0, 0, canvasSize, canvasSize);
             ctx.drawImage(img, (canvasSize - img.width) / 2, (canvasSize - img.height) / 2);
             thumbnailImage.close();
         };
@@ -271,7 +271,15 @@
 
     }
 
+    var cleanCanvas = function() {
+        var ctx = paintCanvas.getContext('2d');
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0, 0, canvasSize, canvasSize);
+
+    };
+
     function cleanOutput() {
+        
         WinJS.log && WinJS.log("", "sample", "status");
         document.getElementById("picture-thumb-modeName").innerText = "";
         document.getElementById("picture-thumb-fileName").innerText = "";
