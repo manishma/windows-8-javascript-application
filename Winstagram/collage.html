@@ -4,13 +4,27 @@
         <title>Collage</title>
             <!-- WinJS references -->
         <link href="//Microsoft.WinJS.1.0/css/ui-dark.css" rel="stylesheet" />
-        <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
-        <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
-        <!-- Winstagram references -->
-        <link href="/css/default.css" rel="stylesheet" />
-
+    <!-- Winstagram references -->
+    <link href="/css/default.css" rel="stylesheet" />
+        <script src="/js/collage.js"></script>
     </head>
     <body>
+        <div data-win-control="SdkSample.ScenarioInput">
+        <p>Get A Picture</p>
+        <button class="action" id="picture-thumb-start">Get Thumbnail</button>
+        <br /><br />
+    </div>
+    <div data-win-control="SdkSample.ScenarioOutput">
+        <img class="imageHolder" id="picture-thumb-imageHolder" alt="image holder" src="/images/placeholder-sdk.png"/>
+        <p id="picture-thumb-detailedStatus" class="status">
+            <span id="picture-thumb-modeName"></span>
+            <span id="picture-thumb-fileName"></span>
+            <span id="picture-thumb-requestedSize"></span>
+            <span id="picture-thumb-returnedSize"></span>
+        </p>
+    </div>
     </body>
 </html>
