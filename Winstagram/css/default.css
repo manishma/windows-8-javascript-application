@@ -1,6 +1,35 @@
 ﻿body {
 }
 
+
+div#palette
+{
+    -ms-grid-row: 1;
+    -ms-grid-column: 2;
+    border: 1px solid gray;
+    height: 70px;
+    width: 330px;
+    padding: 2px;
+}
+
+div.color
+{
+    position: relative;
+    border: 1px solid gray; 
+    height: 30px; 
+    width: 30px; 
+}
+
+div#toolbar
+{
+    height: 70px; 
+    width: 70px; 
+    left: 10px; 
+    padding: 2px; 
+    -ms-grid-row: 1; 
+    -ms-grid-column: 1;
+}
+
 @media screen and (-ms-view-state: fullscreen-landscape) {
 }
 

@@ -63,8 +63,7 @@
         context.lineJoin = "round";
 
         initColorPalette();
-        initToolbar();
-
+        
         brushList = new Array();
     }
 
@@ -76,11 +75,7 @@
         }
     }
 
-    // Clear canvas for new drawing
-    function initToolbar() {
-        var element = document.getElementById("newFile");
-        element.addEventListener("MSPointerUp", clearCanvas, false);
-    }
+    
 
     function colorSelector(evt) {
         context.strokeStyle = evt.srcElement.id;
@@ -255,12 +250,6 @@
     };
     
     function outputResult(item, thumbnailImage, thumbnailMode, requestedSize) {
-        document.getElementById("picture-thumb-imageHolder").src = URL.createObjectURL(thumbnailImage, { oneTimeOnly: true });
-        // Close the thumbnail stream once the image is loaded
-        document.getElementById("picture-thumb-imageHolder").onload = function () {
-
-           // thumbnailImage.close();
-        };
         document.getElementById("picture-thumb-modeName").innerText = thumbnailMode;
         document.getElementById("picture-thumb-fileName").innerText = "File used: " + item.name;
         document.getElementById("picture-thumb-requestedSize").innerText = "Requested size: " + requestedSize;
@@ -276,19 +265,17 @@
 
         var img = new Image();
         img.onload = function () {
-            can.width = img.width;
-            can.height = img.height;
-            ctx.drawImage(img, 0, 0, img.width, img.height);
+            can.width = 300;
+            can.height = 300;
+            ctx.drawImage(img, (300 - img.width)/2, (300 - img.height)/2);
+            thumbnailImage.close();
         }
         img.src = URL.createObjectURL(thumbnailImage, { oneTimeOnly: true });
-
-
 
     }
 
     function cleanOutput() {
         WinJS.log && WinJS.log("", "sample", "status");
-        document.getElementById("picture-thumb-imageHolder").src = "/images/placeholder-sdk.png";
         document.getElementById("picture-thumb-modeName").innerText = "";
         document.getElementById("picture-thumb-fileName").innerText = "";
         document.getElementById("picture-thumb-requestedSize").innerText = "";
