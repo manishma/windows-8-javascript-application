@@ -1,14 +1,25 @@
 ﻿(function () {
     
-
     WinJS.UI.Pages.define("/capture.html", {
         ready: function (element, options) {
+
             btn_capture.addEventListener("click", function() {
                 takePhoto();
             });
+            
+            btn_back.addEventListener("click", function () {
+                history.back();
+            });
+
             startCamera();
         }
+        
     });
+
+    /*function navigateClickHandler(eventInfo) {
+        //WinJS.Navigation.navigate("/default.html");
+        
+    }*/
 
     // Using
     var Capture = Windows.Media.Capture;

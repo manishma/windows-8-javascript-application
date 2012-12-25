@@ -13,6 +13,13 @@
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
+                btnCapture.addEventListener("click", function () {
+                    location.href = "/capture.html";
+                    //WinJS.Navigation.navigate("/capture.html");
+                });
+                btnCollage.addEventListener("click", function () {
+                    location.href = "/collage.html";
+                });
             } else {
                 // TODO: This application has been reactivated from suspension.
                 // Restore application state here.
