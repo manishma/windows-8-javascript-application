@@ -14,6 +14,12 @@
         WinJS.UI.Pages.render(url, host);
     });
 
+    var picturesLib = Windows.Storage.KnownFolders.picturesLibrary;
+    picturesLib.createFolderAsync("Winstagram", Windows.Storage.CreationCollisionOption.openIfExists)
+      .then(function (folder) {
+          WinJS.Application.sessionState.picFolder = folder;
+      });
+
     var app = WinJS.Application;
     var activation = Windows.ApplicationModel.Activation;
 

@@ -27,7 +27,6 @@
     //var recordedFile;
     var takePhotoBlock = false;
     
-    var pics;
     //var videos;
     //var flipView;
     //var imageProcessor;
@@ -42,12 +41,6 @@
             livePreview.play();
         });
     }
-
-    var picturesLib = Storage.KnownFolders.picturesLibrary;
-    picturesLib.createFolderAsync("Winstagram", Storage.CreationCollisionOption.openIfExists)
-      .then(function (folder) {
-          pics = folder;
-      });
     
     function takePhoto() {
 
@@ -58,7 +51,7 @@
         
         takePhotoBlock = true;
 
-        pics.createFileAsync((new Date()).getTime()+".jpg", Storage.CreationCollisionOption.generateUniqueName)
+        WinJS.Application.sessionState.picFolder.createFileAsync((new Date()).getTime() + ".jpg", Storage.CreationCollisionOption.generateUniqueName)
           .then(function (file) {
               var photoProperties = Windows.Media.MediaProperties.ImageEncodingProperties.createJpeg();
 

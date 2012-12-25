@@ -17,6 +17,10 @@
         },
 
         ready: function (element, options) {
+            btn_save.addEventListener("click", function() {
+                saveCanvasToImage();
+            });
+            
             onLoad();
         }
     });
@@ -256,10 +260,11 @@
         var ctx = can.getContext('2d');
 
         var img = new Image();
-        img.onload = function () {
+        img.onload = function() {
             ctx.drawImage(img, (canvasSize - img.width) / 2, (canvasSize - img.height) / 2);
             thumbnailImage.close();
-        }
+        };
+        
         img.src = URL.createObjectURL(thumbnailImage, { oneTimeOnly: true });
 
     }
@@ -271,4 +276,17 @@
         document.getElementById("picture-thumb-requestedSize").innerText = "";
         document.getElementById("picture-thumb-returnedSize").innerText = "";
     }
+
+    var saveCanvasToImage = function() {
+        console.log("saving canvas to image.");
+
+        var saveUrl = paintCanvas.toDataURL("image/jpeg");
+        var base64 = saveUrl.replace("data:image/jpeg;base64,", "");
+
+        WinJS.Application.sessionState.picFolder.createFileAsync((new Date()).getTime() + "_W8GRM.jpg", Windows.Storage.CreationCollisionOption.generateUniqueName)
+            .then(function (file) {
+                
+                console.log("Save collage to image: " + file.path);
+            });
+    };
 })();
