@@ -13,6 +13,10 @@
     var page = WinJS.UI.Pages.define("/collage.html", {
         ready: function (element, options) {
             document.getElementById("picture-thumb-start").addEventListener("click", pickPhoto, false);
+
+
+            var imageMgr = new WindowsRuntimeComponent.ImageProcessing.ImageManager();
+            imageMgr.setTextToImage("path to image", "this is my image caption");
         }
     });
 
